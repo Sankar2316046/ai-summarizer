@@ -1,7 +1,6 @@
-# Text Transformer Studio – UI Boilerplate
+# AI Text Transformer – UI Boilerplate
 
-This repository contains **only the UI boilerplate** for a beginner-friendly
-Next.js + Tailwind app.
+This repository contains **only the UI boilerplate** for a simple Next.js + Tailwind app.
 
 ## What’s included
 
