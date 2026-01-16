@@ -46,10 +46,6 @@ export default function Home() {
                 className="h-64 w-full resize-none rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4 text-sm text-zinc-100 outline-none focus:border-zinc-500"
               />
 
-              {/* Optional UI blocks (kept static for boilerplate)
-                  In your video, you can conditionally show these based on selected mode.
-              */}
-
               {/* Tone dropdown (for Rewrite mode) */}
               <div className="flex items-center gap-3">
                 <span className="text-sm text-zinc-300">Tone</span>
