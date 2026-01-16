@@ -1,65 +1,104 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
+    <main className="min-h-screen bg-zinc-950 text-zinc-50">
+      <div className="mx-auto max-w-4xl px-4 py-10">
+        {/* Header */}
+        <header className="mb-8">
+          <h1 className="text-3xl font-semibold tracking-tight">
+            AI Text Transformer
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-2 text-zinc-300">
+            Summarize, rewrite, and translate
           </p>
+        </header>
+
+        {/* Card */}
+        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
+          {/* Mode buttons + actions */}
+          <div className="flex flex-wrap items-center gap-2">
+            <button className="rounded-full bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition">
+              Summarize
+            </button>
+            <button className="rounded-full bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-700">
+              Rewrite
+            </button>
+            <button className="rounded-full bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-700">
+              Translate
+            </button>
+
+            <div className="ml-auto flex items-center gap-2">
+              <button className="rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800">
+                Load sample
+              </button>
+              <button className="rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800">
+                Clear
+              </button>
+            </div>
+          </div>
+
+          {/* Two-column layout */}
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {/* Left: Input */}
+            <div className="space-y-3">
+              <label className="text-sm text-zinc-300">Input</label>
+              <textarea
+                placeholder="Paste your text here…"
+                className="h-64 w-full resize-none rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4 text-sm text-zinc-100 outline-none focus:border-zinc-500"
+              />
+
+              {/* Optional UI blocks (kept static for boilerplate)
+                  In your video, you can conditionally show these based on selected mode.
+              */}
+
+              {/* Tone dropdown (for Rewrite mode) */}
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-zinc-300">Tone</span>
+                <select className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-100">
+                  <option>Simple</option>
+                  <option>Professional</option>
+                  <option>Friendly</option>
+                  <option>Funny</option>
+                </select>
+              </div>
+
+              {/* Target language (for Translate mode) */}
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-zinc-300">Target</span>
+                <select className="rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-100">
+                  <option>Tamil</option>
+                  <option>English</option>
+                </select>
+              </div>
+
+              {/* Transform button */}
+              <button className="w-full rounded-2xl bg-emerald-400 px-4 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-300">
+                Transform
+              </button>
+            </div>
+
+            {/* Right: Output */}
+            <div className="space-y-3">
+              <label className="text-sm text-zinc-300">Output</label>
+              <div className="h-64 overflow-auto whitespace-pre-wrap rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4 text-sm text-zinc-100">
+                <span className="text-zinc-500">
+                  Your transformed text will appear here.
+                </span>
+              </div>
+              <button className="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800">
+                Copy
+              </button>
+              <p className="text-xs text-zinc-500">
+                Tip: Use “Load sample” for quick demos.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {/* Footer */}
+        <footer className="mt-8 text-xs text-zinc-500">
+          Boilerplate UI only — logic will be added in the video.
+        </footer>
+      </div>
+    </main>
   );
 }
