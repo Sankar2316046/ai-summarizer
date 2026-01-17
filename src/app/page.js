@@ -92,7 +92,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="mt-8 text-xs text-zinc-500">
-          Boilerplate UI only — logic will be added in the video.
+          
         </footer>
       </div>
     </main>
