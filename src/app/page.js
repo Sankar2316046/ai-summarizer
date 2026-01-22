@@ -8,6 +8,7 @@ export default function Home() {
   const [targetLanguage,setTargetLanguage] = useState("tamil")
   const [inputText, setInputText] = useState("")
   const [outputText, setOutputText] = useState("")
+  const [error, setError] = useState("")
 
   const [loading, setLoading] = useState(false)
   const MODES = [{
@@ -30,6 +31,7 @@ function loadSample() {
 function clear() {
   setInputText("")
   setOutputText("")
+  setError("")
 }
 
 async function onCopy() {
@@ -40,6 +42,7 @@ async function onCopy() {
 async function transform() {
   setLoading(true)
   setOutputText("")
+  setError("")
 
   try{
     const response = await fetch("/api/transform",{
@@ -55,13 +58,14 @@ async function transform() {
     const data = await response.json()
     if(!response.ok)
     {
-      throw new Error("Request failed")
+      throw new Error(data.error || "Request failed")
     }
     setOutputText(data.output)
   }
   catch(error)
   {
-    throw new Error("Request failed")
+    console.error(error)
+    setError(error.message)
   }
   finally{
   setLoading(false)
@@ -170,11 +174,15 @@ async function transform() {
             <div className="space-y-3">
               <label className="text-sm text-zinc-300">Output</label>
               <div className="h-64 overflow-auto whitespace-pre-wrap rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4 text-sm text-zinc-100">
-              {outputText?outputText:
+              {error ? (
+                <span className="text-red-500">{error}</span>
+              ) : outputText ? (
+                outputText
+              ) : (
                 <span className="text-zinc-500">
                   Your transformed text will appear here.
                 </span>
-              }
+              )}
               </div>
               <button className="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800"
               onClick={onCopy}>
